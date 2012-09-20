@@ -50,7 +50,7 @@ Package = Backbone.Model.extend({
     ]
 });
 
-Package pkg = new Package();
+var pkg = new Package();
 
 pkg.set({
   "documents": [
