@@ -12,10 +12,10 @@ be represented by that attribute.
 
 ```javascript
 
-Document = Backbone.Model.extend({
-    relations: [
+var Book = Backbone.Model.extend({
+    relations: {
       "author": Backbone.Model
-    ]
+    }
 });
 
 var book = new Book();
@@ -44,10 +44,10 @@ relation of a model is `collection.parent`.
 
 ```javascript
 
-Package = Backbone.Model.extend({
-    relations: [
+var Package = Backbone.Model.extend({
+    relations: {
       "documents": Backbone.Collection
-    ]
+    }
 });
 
 var pkg = new Package();
@@ -57,7 +57,7 @@ pkg.set({
     {id:1, name: "Document 1"},
     {id:2, name: "Document 2"},
   ],
-  "packageTitle": "My package"
+  "packageTitle": "My Package"
 });
 
 var document1 = pkg.get("documents").get(1);
