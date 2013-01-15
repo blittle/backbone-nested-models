@@ -1,7 +1,7 @@
 /**
  * Backbone Nested Models
  * Author: Bret Little
- * Version: 0.3
+ * Version: 0.4
  *
  * Nested model support in Backbone.js
  *
@@ -86,49 +86,71 @@
     };
 
     Backbone.Model.prototype.set = function(key, val, options) {
-        var attr, attrs;
+        var attr, attrs, unset, changes, silent, changing, prev, current;
         if (key == null) return this;
 
         // Handle both `"key", value` and `{key: value}` -style arguments.
-        if (_.isObject(key)) {
+        if (typeof key === 'object') {
             attrs = key;
             options = val;
         } else {
             (attrs = {})[key] = val;
         }
 
-        // Extract attributes and options.
-        var silent = options && options.silent;
-        var unset = options && options.unset;
+        options || (options = {});
 
         // Run validation.
         if (!this._validate(attrs, options)) return false;
 
+        // Extract attributes and options.
+        unset           = options.unset;
+        silent          = options.silent;
+        changes         = [];
+        changing        = this._changing;
+        this._changing  = true;
+
+        if (!changing) {
+            this._previousAttributes = _.clone(this.attributes);
+            this.changed = {};
+        }
+        current = this.attributes, prev = this._previousAttributes;
+
         // Check for changes of `id`.
         if (this.idAttribute in attrs) this.id = attrs[this.idAttribute];
 
-        var now = this.attributes;
-
-        // For each `set` attribute...
+        // For each `set` attribute, update or delete the current value.
         for (attr in attrs) {
             val = attrs[attr];
 
+            // Inject in the relational lookup
             val = this.setRelation(attr, val);
 
-            // Update or delete the current value, and track the change.
-            unset ? delete now[attr] : now[attr] = val;
-            this._changes.push(attr, val);
+            if (!_.isEqual(current[attr], val)) changes.push(attr);
+            if (!_.isEqual(prev[attr], val)) {
+                this.changed[attr] = val;
+            } else {
+                delete this.changed[attr];
+            }
+            unset ? delete current[attr] : current[attr] = val;
         }
 
-        // Signal that the model's state has potentially changed, and we need
-        // to recompute the actual changes.
-        this._hasComputed = false;
+        // Trigger all relevant attribute changes.
+        if (!silent) {
+            if (changes.length) this._pending = true;
+            for (var i = 0, l = changes.length; i < l; i++) {
+                this.trigger('change:' + changes[i], this, current[changes[i]], options);
+            }
+        }
 
-        // Fire the `"change"` events.
-        if (!silent) this.change(options);
+        if (changing) return this;
+        if (!silent) {
+            while (this._pending) {
+                this._pending = false;
+                this.trigger('change', this, options);
+            }
+        }
+        this._pending = false;
+        this._changing = false;
         return this;
     };
-
-
-
 })(Backbone);
