@@ -15,7 +15,7 @@
         var relation = this.attributes[attr],
             modelToSet, modelsToAdd = [], modelsToRemove = [];
 
-        if(_.has(this.relations, attr)) {
+        if(this.relations && _.has(this.relations, attr)) {
 
             // If the relation already exists, we don't want to replace it, rather
             // update the data within it whether it is a collection or model
