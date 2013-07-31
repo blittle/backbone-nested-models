@@ -11,7 +11,7 @@
     var Model = Backbone.Model,
         Collection = Backbone.Collection;
 
-    Backbone.Model.prototype.setRelation = function(attr, val) {
+    Backbone.Model.prototype.setRelation = function(attr, val, options) {
         var relation = this.attributes[attr],
             modelToSet, modelsToAdd = [], modelsToRemove = [];
 
@@ -78,7 +78,7 @@
                 return relation;
             }
 
-            val = new this.relations[attr](val);
+            val = new this.relations[attr](val, options);
             val.parent = this;
         }
 
@@ -123,7 +123,7 @@
             val = attrs[attr];
 
             // Inject in the relational lookup
-            val = this.setRelation(attr, val);
+            val = this.setRelation(attr, val, options);
 
             if (!_.isEqual(current[attr], val)) changes.push(attr);
             if (!_.isEqual(prev[attr], val)) {
