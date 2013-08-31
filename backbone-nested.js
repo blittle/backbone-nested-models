@@ -167,7 +167,9 @@
       var attrs = _.clone(this.attributes);
 
       _.each(this.relations, function(rel, key) {
-        attrs[key] = attrs[key].toJSON();
+        if (_.has(attrs, key)) {
+          attrs[key] = attrs[key].toJSON();
+        }
       });
 
       return attrs;
