@@ -2,7 +2,7 @@ Backbone Nested Models
 ======================
 
 Backbone nested models is meant to be a lightweight and simple solution for nested models in [Backbone.js](http://backbonejs.org/). It gives you
-nothing fancy, just simple relations (662 bytes minified/gzipped). If you are looking for a larger more complex and exhaustive solution checkout
+nothing fancy, just simple relations (2.1 kilobytes minified). If you are looking for a larger more complex and exhaustive solution checkout
 [Backbone-relational](https://github.com/PaulUithol/Backbone-relational) by Paul Uithol.
 
 ## Options
