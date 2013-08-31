@@ -1,0 +1,37 @@
+{
+  "name": "backbone-nested",
+  "version": "0.5.0",
+  "description": "Backbone Nested Models\r ======================",
+  "main": "backbone-nested.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blittle/backbone-nested.git"
+  },
+  "keywords": [
+    "backbone",
+    "relations",
+    "nested",
+    "models"
+  ],
+  "author": "Bret Little",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "dc9be28e8af4d177e561238449c230fbebd9a12b",
+  "bugs": {
+    "url": "https://github.com/blittle/backbone-nested/issues"
+  },
+  "devDependencies": {
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.2",
+    "grunt": "~0.4.1",
+    "grunt-karma": "~0.6.2",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}

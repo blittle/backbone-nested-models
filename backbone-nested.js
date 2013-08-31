@@ -13,7 +13,10 @@
 
     Backbone.Model.prototype.setRelation = function(attr, val, options) {
         var relation = this.attributes[attr],
+            id = this.idAttribute || "id",
             modelToSet, modelsToAdd = [], modelsToRemove = [];
+
+        if(options.unset && relation) delete relation.parent;        
 
         if(this.relations && _.has(this.relations, attr)) {
 
@@ -29,11 +32,15 @@
 
                     relation.each(function(model, i) {
 
+                        // If the model does not have an "id" skip logic to detect if it already
+                        // exists and simply add it to the collection
+                        if(typeof model[id] == 'undefined') return;
+
                         // If the incoming model also exists within the existing collection,
                         // call set on that model. If it doesn't exist in the incoming array,
                         // then add it to a list that will be removed.
                         var rModel = _.find(val, function(_model) {
-                            return _model.id === model.id;
+                            return _model[id] === model[id];
                         });
 
                         if(rModel) {
@@ -62,7 +69,7 @@
                     // model.
 
                     relation.each(function(model) {
-                        if(val.id === model.id) {
+                        if(val[id] === model[id]) {
                             model.set(val);
                         } else {
                             relation.remove(model);
@@ -77,6 +84,8 @@
                 relation.set(val);
                 return relation;
             }
+
+            options._parent = this;
 
             val = new this.relations[attr](val, options);
             val.parent = this;
@@ -152,5 +161,40 @@
         this._pending = false;
         this._changing = false;
         return this;
+    };
+
+    Backbone.Model.prototype.toJSON = function(options) {
+      var attrs = _.clone(this.attributes);
+
+      _.each(this.relations, function(rel, key) {
+        attrs[key] = attrs[key].toJSON();
+      });
+
+      return attrs;
+    };
+
+    Backbone.Collection.prototype.resetRelations = function(options) {
+        _.each(this.models, function(model) {
+            _.each(model.relations, function(rel, key) {
+                if(model.get(key) instanceof Backbone.Collection) {
+                    model.get(key).trigger('reset', model, options);
+                }
+            });
+        })
+    };
+
+    Backbone.Collection.prototype.reset = function(models, options) {
+      options || (options = {});
+      for (var i = 0, l = this.models.length; i < l; i++) {
+        this._removeReference(this.models[i]);
+      }
+      options.previousModels = this.models;
+      this._reset();
+      this.add(models, _.extend({silent: true}, options));
+      if (!options.silent) { 
+        this.trigger('reset', this, options);
+        this.resetRelations(options);
+      }
+      return this;
     };
 })(Backbone);

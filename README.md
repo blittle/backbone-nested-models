@@ -37,7 +37,7 @@ author.parent.get('pages') === 450;
 ```
 Whenever set is called on a model, or a json response is saved to a model, if a relation exists for one of the attributes
 being saved, a new instance of that relation will be created or if it already exists, it will be updated. Also note that
-the relation will be given a backwards reference to its parent model through the keyword `parent`.
+the relation will be given a backwards reference to its parent model through the keyword `parent`. A `_parent` attribute will also be added to the options paramter passed to the initialize method, but be aware that the parent model is not entirely initialized at this point.
 
 Collections work similarly except that the backwards reference from a model which is part of a colleciton which is a 
 relation of a model is `collection.parent`.
@@ -71,6 +71,17 @@ document1.collection.parent.get("packageTitle") === "My Package";
 Backbone nested models will never recreate an entire relation as an attribute to a model. It only creates the relation
 once and thereafter updates the collection or model representing the relation. This is important because event bindings
 or cached references may be pointing to the previous relations, and if they are recreated those references would be lost.
+
+## Change log
+
+v0.5.0 
+
+* Feature - Call reset event for nested Models/Collections - #5
+* Feature - Recursively call .toJSON()
+* Fix memory leak issue where parent references weren't removed on "unset"
+* Fix various issues with the collection merging.
+* Add karma test suite
+
 
 ## License
 
