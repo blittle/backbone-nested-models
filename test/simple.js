@@ -176,7 +176,9 @@ describe("Simple Tests", function() {
 
 	it("Should recursively call .toJSON", function() {
 		var json = book.toJSON();
-		debugger;
 		expect(json.pages[0].number).toEqual(1);
+
+		var emptyBook = new Book();
+		expect(emptyBook.toJSON()).toEqual({});
 	});
 });
