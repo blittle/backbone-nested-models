@@ -159,19 +159,29 @@ describe("Simple Tests", function() {
 		  model: Bucket
 		});
 
-		var buckets = new Buckets();
-		buckets.reset([
+		var buckets = new Buckets([
 		  {
 		    name: 'a',
 		    things: [{num: 1}, {num: 2}]
-		  },
+		  }
+		]);
+		expect(spy.callCount).toEqual(1);
+
+		buckets.reset([
 		  {
 		    name: 'b',
 		    things: [{num: 1}, {num: 2}]
 		  }
 		]);
+		expect(spy.callCount).toEqual(2);
 
-		expect(spy).toHaveBeenCalled();
+		buckets.add([
+		  {
+		    name: 'c',
+		    things: [{num: 1}, {num: 2}]
+		  }
+		]);
+		expect(spy.callCount).toEqual(3);
 	});
 
 	it("Should recursively call .toJSON", function() {
