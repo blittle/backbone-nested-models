@@ -174,6 +174,20 @@
 
       return attrs;
     };
+    
+
+    Backbone.Model.prototype.clone = function(options) {
+        var attrs = _.clone(this.attributes);
+
+        _.each(this.relations, function(rel, key) {
+            if (_.has(attrs, key)) {
+                attrs[key] = _.clone(attrs[key].attributes);
+            }
+        });
+
+        return new this.constructor(attrs);
+    };
+    
 
     Backbone.Collection.prototype.resetRelations = function(options) {
         _.each(this.models, function(model) {
