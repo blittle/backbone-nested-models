@@ -175,6 +175,10 @@
       return attrs;
     };
 
+    Backbone.Model.prototype.clone = function(options) {
+        return new this.constructor(this.toJSON());
+    };
+
     Backbone.Collection.prototype.resetRelations = function(options) {
         _.each(this.models, function(model) {
             _.each(model.relations, function(rel, key) {
