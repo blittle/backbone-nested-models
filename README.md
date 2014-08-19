@@ -74,6 +74,9 @@ or cached references may be pointing to the previous relations, and if they are 
 
 ## Change log
 
+v0.6.0
+* Merge https://github.com/blittle/backbone-nested-models/pull/15
+
 v0.5.1
 * Fix toJSON from failing when relations are defined but don't exist
 
