@@ -169,10 +169,16 @@
       _.each(this.relations, function(rel, key) {
         if (_.has(attrs, key)) {
           attrs[key] = attrs[key].toJSON();
+        } else {
+            attrs[key] = (new rel()).toJSON();
         }
       });
 
       return attrs;
+    };
+
+    Backbone.Model.prototype.clone = function(options) {
+        return new this.constructor(this.toJSON());
     };
 
     Backbone.Collection.prototype.resetRelations = function(options) {
