@@ -179,6 +179,6 @@ describe("Simple Tests", function() {
 		expect(json.pages[0].number).toEqual(1);
 
 		var emptyBook = new Book();
-		expect(emptyBook.toJSON()).toEqual({});
+		expect(emptyBook.toJSON()).toEqual({author: {}, pages: []});
 	});
 });
