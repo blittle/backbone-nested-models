@@ -1,6 +1,6 @@
 {
   "name": "backbone-nested-models",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "main": "./backbone-nested.js",
   "dependencies": {
     "backbone": "~1.0",
