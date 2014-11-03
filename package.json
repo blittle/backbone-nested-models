@@ -1,6 +1,6 @@
 {
   "name": "backbone-nested",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Backbone Nested Models\r ======================",
   "main": "backbone-nested.js",
   "repository": {

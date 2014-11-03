@@ -1,7 +1,7 @@
 /**
  * Backbone Nested Models
  * Author: Bret Little
- * Version: 0.6.1
+ * Version: 0.6.2
  *
  * Nested model support in Backbone.js
  *
@@ -16,7 +16,7 @@
             id = this.idAttribute || "id",
             modelToSet, modelsToAdd = [], modelsToRemove = [];
 
-        if(options.unset && relation) delete relation.parent;        
+        if(options.unset && relation) delete relation.parent;
 
         if(this.relations && _.has(this.relations, attr)) {
 
@@ -199,7 +199,7 @@
       options.previousModels = this.models;
       this._reset();
       this.add(models, _.extend({silent: true}, options));
-      if (!options.silent) { 
+      if (!options.silent) {
         this.trigger('reset', this, options);
         this.resetRelations(options);
       }
