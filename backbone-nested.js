@@ -7,7 +7,19 @@
  *
  **/
 
-(function(Backbone) {
+// support amd and common js
+(function(factory) {
+  if (typeof Backbone !== 'undefined' ||
+      typeof exports !== 'undefined') {
+    factory(Backbone);
+
+  } else if (typeof define === 'function' && define.amd) {
+    // AMD
+    define(['backbone'], function(backbone) {
+      factory(Backbone);
+    });
+  } 
+}(function(Backbone) {
     var Model = Backbone.Model,
         Collection = Backbone.Collection;
 
@@ -205,4 +217,4 @@
       }
       return this;
     };
-})(Backbone);
+}));
