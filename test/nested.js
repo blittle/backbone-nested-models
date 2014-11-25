@@ -34,7 +34,7 @@ ddescribe("Nested relations", function() {
 	});
 
 	it("Should build a nested relation", function() {
-    expect(item.get('outlooks').at(0).get('scenarios').at(0).get('someValue')).toBe(true);
+          expect(item.get('outlooks').at(0).get('scenarios').at(0).get('someValue')).toBe(true);
 	});
 
 });
