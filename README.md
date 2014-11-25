@@ -74,6 +74,9 @@ or cached references may be pointing to the previous relations, and if they are 
 
 ## Change log
 
+v0.7.0
+* Add AMD support
+
 v0.6.0
 * Merge https://github.com/blittle/backbone-nested-models/pull/15
 
