@@ -1,4 +1,4 @@
-ddescribe("Nested relations", function() {
+describe("Nested relations", function() {
 	var item, Item;
 
 	beforeEach(function() {
