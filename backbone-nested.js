@@ -92,7 +92,11 @@
                 return relation;
             }
 
-            if(relation && relation instanceof Model) {
+            if (val instanceof Model) {
+                val = val.toJSON()
+            }
+
+            if (relation && relation instanceof Model) {
                 relation.set(val);
                 return relation;
             }
