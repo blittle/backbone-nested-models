@@ -16,7 +16,7 @@ module.exports = function(config) {
     files: [      
       'bower_components/underscore/underscore.js',
       'bower_components/backbone/backbone.js',
-      'backbone-nested.js',
+      'backbone-nested-models.js',
       'test/*.js'
     ],
 

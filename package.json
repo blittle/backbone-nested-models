@@ -1,8 +1,8 @@
 {
-  "name": "backbone-nested",
-  "version": "0.7.1",
+  "name": "backbone-nested-models",
+  "version": "1.0.0",
   "description": "Backbone Nested Models\r ======================",
-  "main": "backbone-nested.js",
+  "main": "backbone-nested-models.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/blittle/backbone-nested.git"

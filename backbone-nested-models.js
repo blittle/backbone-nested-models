@@ -1,25 +1,28 @@
 /**
  * Backbone Nested Models
  * Author: Bret Little
- * Version: 0.7.0
+ * Version: 1.0.0
  *
  * Nested model support in Backbone.js
  *
  **/
 
 // support amd and common js
-(function(factory) {
-  if (typeof Backbone !== 'undefined' ||
-      typeof exports !== 'undefined') {
-    factory(Backbone);
+(function (root, factory) {
+  if (typeof exports === 'object') {
+		// CommonJS
+		module.exports = factory(require('backbone'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD
+		define(['backbone'], function (b) {
+			return (root.returnExportsGlobal = factory(b));
+		});
+	} else {
+		// Global Variables
+		root.returnExportsGlobal = factory(root.Backbone);
+	}
+}(this, function (Backbone) {
 
-  } else if (typeof define === 'function' && define.amd) {
-    // AMD
-    define(['backbone'], function(backbone) {
-      factory(Backbone);
-    });
-  } 
-}(function(Backbone) {
     var Model = Backbone.Model,
         Collection = Backbone.Collection;
 
