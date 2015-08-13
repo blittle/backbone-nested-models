@@ -39,38 +39,29 @@
             // update the data within it whether it is a collection or model
             if(relation && relation instanceof Collection) {
 
-                // If the val that is being set is already a collection, use the models
-                // within the collection.
-                if(val instanceof Collection || val instanceof Array){
+                // `val` can come in as a Collection, Array, or single Model.
+                // Ensure that it is an Array for use with `collection.set()`.
+                if(val instanceof Collection || val instanceof Array) {
                     val = val.models || val;
-
-                    relation.set(val);
-
                 } else {
-
-                    // The incoming val that is being set is not an array or collection, then it represents
-                    // a single model.  Go through each of the models in the existing relation and remove
-                    // all models that aren't the same as this one (by id). If it is the same, call set on that
-                    // model.
-
-                    relation.each(function(model) {
-                        if(val[id] === model[id]) {
-                            model.set(val);
-                        } else {
-                            relation.remove(model);
-                        }
-                    });
+                    val = [val];
                 }
+
+                relation.set(val, options);
 
                 return relation;
             }
 
-            if (val instanceof Model) {
-                val = val.toJSON()
-            }
+            if(relation && relation instanceof Model) {
 
-            if (relation && relation instanceof Model) {
-                relation.set(val);
+                // `val` can come in as a Model or attributes hash.
+                // Ensure that it is an attributes hash for use with `model.set()`.
+                if (val instanceof Model) {
+                    val = val.toJSON()
+                }
+
+                relation.set(val, options);
+
                 return relation;
             }
 
