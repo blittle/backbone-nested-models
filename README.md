@@ -74,6 +74,9 @@ or cached references may be pointing to the previous relations, and if they are 
 
 ## Change log
 
+v2.0.0
+* Use build int `Collection.prototype.set` - https://github.com/blittle/backbone-nested-models/pull/23
+
 v0.7.0
 * Add AMD support
 
