@@ -74,6 +74,9 @@ or cached references may be pointing to the previous relations, and if they are 
 
 ## Change log
 
+v2.0.1
+* Explicitly depend upon underscore - https://github.com/blittle/backbone-nested-models/pull/25
+
 v2.0.0
 * Use build int `Collection.prototype.set` - https://github.com/blittle/backbone-nested-models/pull/23
 
