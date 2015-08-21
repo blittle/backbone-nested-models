@@ -11,17 +11,17 @@
 (function (root, factory) {
   if (typeof exports === 'object') {
 		// CommonJS
-		module.exports = factory(require('backbone'));
+		module.exports = factory(require('backbone'), require('underscore'));
 	} else if (typeof define === 'function' && define.amd) {
 		// AMD
-		define(['backbone'], function (b) {
-			return (root.returnExportsGlobal = factory(b));
+		define(['backbone', 'underscore'], function (b, u) {
+			return (root.returnExportsGlobal = factory(b, u));
 		});
 	} else {
 		// Global Variables
-		root.returnExportsGlobal = factory(root.Backbone);
+		root.returnExportsGlobal = factory(root.Backbone, root._);
 	}
-}(this, function (Backbone) {
+}(this, function (Backbone, _) {
 
     var Model = Backbone.Model,
         Collection = Backbone.Collection;
