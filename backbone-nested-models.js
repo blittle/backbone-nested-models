@@ -67,7 +67,9 @@
 
             options._parent = this;
 
-            val = new this.relations[attr](val, options);
+            if (!(val instanceof Collection)) {
+                val = new this.relations[attr](val, options);
+            }
             val.parent = this;
         }
 
