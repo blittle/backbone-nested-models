@@ -1,9 +1,10 @@
 {
   "name": "backbone-nested-models",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Backbone Nested Models\r ======================",
   "scripts": {
-    "test": "node ./node_modules/grunt-cli/bin/grunt test"
+    "test": "node ./node_modules/grunt-cli/bin/grunt karma:headless",
+    "test-chrome": "node ./node_modules/grunt-cli/bin/grunt test"
   },
   "main": "backbone-nested-models.js",
   "repository": {
