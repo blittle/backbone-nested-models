@@ -1,4 +1,4 @@
-Backbone Nested Models
+Backbone Nested Models [![Build Status](https://travis-ci.org/blittle/backbone-nested-models.png?branch=master)](https://travis-ci.org/blittle/backbone-nested-models)
 ======================
 
 Backbone nested models is meant to be a lightweight and simple solution for nested models in [Backbone.js](http://backbonejs.org/). It gives you
