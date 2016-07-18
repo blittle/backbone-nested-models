@@ -67,7 +67,7 @@
 
             options._parent = this;
 
-            if (!(val instanceof Collection)) {
+            if (!(val instanceof Collection) && !(val instanceof Model)) {
                 val = new this.relations[attr](val, options);
             }
             val.parent = this;
