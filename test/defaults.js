@@ -1,5 +1,5 @@
 describe("Simple Tests", function() {
-    var Book, Author;
+    var Book, Author, defaultAuthor;
 
     beforeEach(function() {
         Author = Backbone.Model.extend({
@@ -7,6 +7,8 @@ describe("Simple Tests", function() {
                 name: "Anonymous"
             }
         });
+        
+        defaultAuthor = new Author();
 
         Book = Backbone.Model.extend({
             relations: {
@@ -14,7 +16,7 @@ describe("Simple Tests", function() {
               pages: Backbone.Collection
             },
             defaults: {
-              author: new Author(),
+              author: defaultAuthor,
               pages: new Backbone.Collection()
             }
         });
@@ -26,6 +28,10 @@ describe("Simple Tests", function() {
         expect(book.get('author')).not.toBe(null);
         expect(book.get('author')).not.toBe(null);
         expect(book.get('author').get('name')).toEqual('Anonymous');
+        
+        expect(book.toJSON().author.name).toEqual('Anonymous');
+        // it should create new instance
+        expect(book.get('author')).not.toEqual(defaultAuthor);
 
         expect(book.get('pages').length).toBe(0);
 
@@ -56,6 +62,8 @@ describe("Simple Tests", function() {
         expect(book.get('author').get('name')).toEqual('Heber J. Grant');
         expect(book.get('author').get('title')).toEqual('President');
         expect(book.get('author').get('age')).toEqual('47');
+        
+        expect(book.toJSON().author.age).toEqual('47');
 
         expect(book.get('pages').length).toBe(2);
         expect(book.get('pages').at(0).get('number')).toBe(1);
