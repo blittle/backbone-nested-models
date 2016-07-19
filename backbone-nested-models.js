@@ -1,7 +1,7 @@
 /**
  * Backbone Nested Models
  * Author: Bret Little
- * Version: 2.0.3
+ * Version: 2.0.4
  *
  * Nested model support in Backbone.js
  *
