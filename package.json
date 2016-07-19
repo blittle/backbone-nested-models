@@ -1,6 +1,6 @@
 {
   "name": "backbone-nested-models",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Backbone Nested Models\r ======================",
   "scripts": {
     "test": "node ./node_modules/grunt-cli/bin/grunt karma:headless",
