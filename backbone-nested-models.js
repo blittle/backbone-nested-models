@@ -67,9 +67,10 @@
 
             options._parent = this;
 
-            if (!(val instanceof Collection) && !(val instanceof Model)) {
-                val = new this.relations[attr](val, options);
+            if (val instanceof Collection || val instanceof Model) {
+                val = val.toJSON();
             }
+            val = new this.relations[attr](val, options);
             val.parent = this;
         }
 
