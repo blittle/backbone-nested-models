@@ -151,9 +151,9 @@
 
       _.each(this.relations, function(rel, key) {
         if (_.has(attrs, key)) {
-          attrs[key] = attrs[key].toJSON();
+          attrs[key] = attrs[key].toJSON(options);
         } else {
-            attrs[key] = (new rel()).toJSON();
+            attrs[key] = (new rel()).toJSON(options);
         }
       });
 
