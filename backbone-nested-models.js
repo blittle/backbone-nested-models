@@ -151,7 +151,9 @@
 
       _.each(this.relations, function(rel, key) {
         if (_.has(attrs, key)) {
-          attrs[key] = attrs[key].toJSON();
+          if(attrs[key] !== null) {
+            attrs[key] = attrs[key].toJSON();
+          }
         } else {
             attrs[key] = (new rel()).toJSON();
         }
