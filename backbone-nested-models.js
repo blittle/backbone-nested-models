@@ -60,6 +60,7 @@
                     val = val.toJSON()
                 }
 
+                if (options.parse) val = relation.parse(val, options);
                 relation.set(val, options);
 
                 return relation;
